@@ -14,18 +14,19 @@ class InventorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('inventories')->insert([
+        DB::table('inventories')->insert(
             [
-                'nama_bahan' => 'Es Batu',
-                'stok_bahan' => 20,
-                'satuan_bahan' => 'kg',
-            ],
-            [
-                'nama_bahan' => 'Ayam',
-                'stok_bahan' => 50,
-                'satuan_bahan' => 'kg',
-            ],
-        ]
+                [
+                    'nama_bahan' => 'Alcohol Parfume',
+                    'stok_bahan' => 20,
+                    'satuan_bahan' => 'liter',
+                ],
+                [
+                    'nama_bahan' => 'Botol Kaca',
+                    'stok_bahan' => 50,
+                    'satuan_bahan' => 'pcs',
+                ],
+            ]
         );
     }
 }

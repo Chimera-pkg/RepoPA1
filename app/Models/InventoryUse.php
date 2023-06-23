@@ -16,6 +16,7 @@ class InventoryUse extends Model
         'keterangan',
         'id_user',
         'stok_sekarang',
+        'tanggal_kelola',
         'harga',
         'nota',
     ];
@@ -31,7 +32,6 @@ class InventoryUse extends Model
             ->get(['inventory_use.*', 'users.name', 'users.id as id_user', 'inventories.nama_bahan', 'inventories.id as id_bahan', 'inventories.satuan_bahan']);
 
         return $details;
-
     }
 
     public static function penggunaan_terakhir()
@@ -39,10 +39,9 @@ class InventoryUse extends Model
 
         $details = InventoryUse::join('inventories', 'inventories.id', '=', 'inventory_use.id_inventory')
             ->orderByDesc('created_at')
-        // ->limit(5)
+            // ->limit(5)
             ->get(['inventory_use.status', 'inventory_use.created_at', 'inventory_use.stok_berubah', 'inventories.nama_bahan', 'inventories.id as id_bahan', 'inventories.satuan_bahan', 'inventories.gambar_bahan']);
 
         return $details;
-
     }
 }

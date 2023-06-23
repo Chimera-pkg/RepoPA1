@@ -87,11 +87,10 @@ class ProfileController extends Controller
 
         // dd('ok');
         $user = User::findOrFail($request->id_user);
-
+        
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'role' => 'required|string',
             'avatar' => ['nullable', 'image', 'mimes:jpg,png,jpeg,webp,gif,svg,bmp', 'max:2048'],
         ]);
 
@@ -102,19 +101,26 @@ class ProfileController extends Controller
                 ->withInput();
         }
 
+        // dd($request->avatar);
+
         $data = [
             'name' => $request->name,
             'username' => $request->username,
-            'role' => $request->role,
+            // 'role' => $request->role,
         ];
+
+        // dd($request->avatar == "20.png");
 
         if ($request->hasFile('avatar')) {
 
-            if ($request->avatar != "20.png") {
+            if($user->avatar != '20.png'){
                 if (file_exists(public_path('assets/img/avatars/' . $user->avatar))) {
-                    unlink(public_path('assets/img/avatars/' . $user->avatar));
+                        unlink(public_path('assets/img/avatars/' . $user->avatar));
                 }
             }
+
+                
+            
 
             $imageName = time() . '.' . $request->avatar->extension();
             $request->avatar->move(public_path('assets/img/avatars'), $imageName);

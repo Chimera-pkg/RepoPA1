@@ -1,14 +1,26 @@
 <!-- Offcanvas to add new user -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditUser" aria-labelledby="offcanvasEditUserLabel">
     <div class="offcanvas-header border-bottom">
-        <h6 id="offcanvasAddUserLabel" class="offcanvas-title">
-            Kelola Stok
+        <h6 id="offcanvasEditUserLabel" class="offcanvas-title">
+            Edit Kelola Stok
         </h6>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-        <form class="add-new-user pt-0 form-field" id="addNewUserForm" action="{{ url('inventori/kelola_stok') }}"
-            method="POST" enctype="multipart/form-data">
+
+        {{-- @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif --}}
+
+
+        <form class="add-new-user pt-0 form-field" id="editKelolaStok"
+            action="{{ url('inventori/update_kelola_stok') }}" method="POST" enctype="multipart/form-data">
 
             @csrf
 
@@ -31,10 +43,11 @@
 
             <div class="mb-3">
                 <label class="form-label" for="status">Pilih Kegiatan</label>
-                <select id="status" class="form-select" name="status">
-                    <option value="" {{ old('status') == '' ? 'selected' : '' }} disabled>---- Pilih ----</option>
-                    <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Tambah Stok</option>
-                    <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Gunakan Stok</option>
+                <select id="status_edit" class="form-select" name="status_edit">
+                    <option value="" {{ old('status_edit') == '' ? 'selected' : '' }} disabled>---- Pilih ----
+                    </option>
+                    <option value="1" {{ old('status_edit') == '1' ? 'selected' : '' }}>Tambah Stok</option>
+                    <option value="0" {{ old('status_edit') == '0' ? 'selected' : '' }}>Gunakan Stok</option>
                 </select>
             </div>
 
@@ -46,7 +59,7 @@
             </div>
 
 
-            <div id="addField" style="display: none">
+            <div id="addFieldEdit" style="display: none">
                 <div class="mb-3" id="harga_inp">
                     <label class="form-label" for="harga">Harga</label>
                     <input type="number" class="form-control" id="harga" name="harga"

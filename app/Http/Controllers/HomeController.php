@@ -32,14 +32,13 @@ class HomeController extends Controller
             'title' => 'Beranda - Aplikasi Pengelolaan RM Alam Mutiara',
         ];
 
-        if (Auth::user()->role == 'manajer' || Auth::user()->role == 'gudang' || Auth::user()->role == 'kasir') {
+        if (Auth::user()->role == 'gudang') {
 
             // $data['']
             // dd();
 
             $data['seluruh_bahan'] = Inventory::count();
-            $data['toko'] = Store::count();
-            $data['menu'] = Menu::where('status', 1)->count();
+            $data['toko'] = 3;
             $data['bahan_akitf'] = Inventory::where('status_bahan', 1)->count();
 
             // SELECT * FROM `inventory_use` order by created_at DESC;
@@ -47,10 +46,12 @@ class HomeController extends Controller
             $data['penggunaan_terakhir'] = InventoryUse::penggunaan_terakhir();
             // dd($data['penggunaan_terakhir']);
 
-            $data['minuman_hariini'] = Menu::where('status', 1)->where('jenis', 'Minuman')->get();
-            $data['makanan_hariini'] = Menu::where('status', 1)->where('jenis', 'Makanan')->get();
+
 
             return view('home', $data);
+        } else {
+
+            return redirect()->to('kelola_pengguna');
         }
     }
 }

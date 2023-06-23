@@ -2,7 +2,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditUser" aria-labelledby="offcanvasEditUserLabel">
     <div class="offcanvas-header border-bottom">
         <h6 id="offcanvasEditUserLabel" class="offcanvas-title">
-            Update Data Bahan Baku
+            Update Data Barang
         </h6>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -20,19 +20,19 @@
         margin-right: auto;border-radius: 100%">
 
             <div class="mb-3">
-                <label class="form-label" for="">Foto Bahan Baku</label>
+                <label class="form-label" for="">Foto Barang</label>
                 <input type="file" class="form-control" id="avatar_add" placeholder="John Doe" name="gambar_bahan"
                     aria-label="John Doe" onchange="preview_img()" accept="image/*" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="nama_barang">Nama Bahan</label>
-                <input type="text" class="form-control" id="nama_barang" placeholder="Beras" name="nama_barang"
+                <label class="form-label" for="nama_barang">Nama Barang</label>
+                <input type="text" class="form-control" id="nama_barang" placeholder="Botol Kaca" name="nama_barang"
                     value="{{ old('nama_barang') }}" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="satuan_bahan">Satuan Bahan</label>
+                <label class="form-label" for="satuan_bahan">Satuan Barang</label>
                 <input type="text" class="form-control" id="satuan_bahan" placeholder="Contoh: Kg"
                     name="satuan_bahan" value="{{ old('satuan_bahan') }}" />
             </div>

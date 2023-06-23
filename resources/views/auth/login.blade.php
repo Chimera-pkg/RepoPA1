@@ -15,10 +15,6 @@
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner py-4">
 
-                <center>
-                    <img src="{{ asset('assets/img/avatars/wak_dody.png') }}" alt="" srcset="" class="mb-5"
-                        style="border-radius: 100%; height: 200px;">
-                </center>
 
                 <!-- Register -->
                 <div class="card">
@@ -27,13 +23,13 @@
                         <div class="app-brand justify-content-center">
                             <a href="{{ url('/') }}" class="app-brand-link gap-2">
 
-                                <span class="app-brand-text demo h3 mb-0 fw-bold">Alam Mutiara</span>
+                                <span class="app-brand-text demo h3 mb-0 fw-bold">Annisa Cosmetic</span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h5 class="mb-2">Selamat Datang di Aplikasi Rumah Makan Alam Mutiara! 👋</h5>
+                        <h5 class="mb-2">Selamat Datang di Aplikasi Kelola Barang Annis Cosmetic</h5>
                         <p class="mb-4">
-                            Masukkan email dan password pegawai yang sudah didaftarkan
+                            Masukkan username dan password pegawai yang sudah didaftarkan
                         </p>
 
                         @if (session()->has('error'))

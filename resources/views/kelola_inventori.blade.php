@@ -49,7 +49,7 @@
                         <!-- Users List Table -->
                         <div class="card">
                             <div class="card-header border-bottom">
-                                <h5 class="card-title">List Bahan Baku</h5>
+                                <h5 class="card-title">List Barang</h5>
 
                                 {{-- @if ($errors->any())
                                     <div class="alert alert-danger alert-dismissible" role="alert">
@@ -81,7 +81,7 @@
                                         <tr>
 
                                             <th>ID</th>
-                                            <th>Nama Bahan</th>
+                                            <th>Nama Barang</th>
                                             <th>Stok</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -539,7 +539,7 @@
                                     ]
                                 },
                                 {
-                                    text: '<i class="bx bx-plus me-0 me-lg-2"></i><span class="d-none d-lg-inline-block">Tambah Bahan Baku</span>',
+                                    text: '<i class="bx bx-plus me-0 me-lg-2"></i><span class="d-none d-lg-inline-block">Tambah Barang</span>',
                                     className: "add-new btn btn-primary",
                                     attr: {
                                         "data-bs-toggle": "offcanvas",
@@ -599,8 +599,8 @@
                             // });
 
                             swal({
-                                    title: "Are you sure you want to delete this record?",
-                                    text: "If you delete this, it will be gone forever.",
+                                    title: "Apakah kamu yakin untuk menghapus bahan ini?",
+                                    text: "Jika kamu menghapus ini, makan akan terhapus selamanya",
                                     icon: "warning",
                                     buttons: ["Batal", "Ya!"],
                                     dangerMode: true,
@@ -746,7 +746,7 @@
                                             maxSize: 10 * 1024 * 1024, // 10 MB
                                             minSize: 1024, // 1 KB
                                             messageExtension: 'Format file tidak sesuai',
-                                            messageSize: 'Ukuran file harus di antara 1 KB dan 10 MB'
+                                            message: 'Ukuran file harus di antara 1 KB dan 10 MB'
                                         }
                                     }
                                 },
@@ -815,7 +815,7 @@
                                             maxSize: 10 * 1024 * 1024, // 10 MB
                                             minSize: 1024, // 1 KB
                                             messageExtension: 'Format file tidak sesuai',
-                                            messageSize: 'Ukuran file harus di antara 1 KB dan 10 MB'
+                                            message: 'Ukuran file harus di antara 1 KB dan 10 MB'
                                         }
                                     }
                                 },

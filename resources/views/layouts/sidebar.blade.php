@@ -2,7 +2,8 @@
     <div class="app-brand demo ">
         <a href="{{ route('home') }}" class="app-brand-link">
 
-            <span class="app-brand-text demo menu-text fw-bold ms-1" style="font-size: 25px">Alam Mutiara</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-1" style="font-size: 22px;color: palevioletred">Annisa
+                Cosmetic</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -40,22 +41,19 @@
     </ul>
 </li> --}}
         @if (Auth::user()->role == 'admin')
-            <!-- Dashboards -->
-            <li class="menu-item <?= Request::segment(1) == 'home' ? 'active' : '' ?>">
-                <a href="{{ route('home') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Beranda">Beranda</div>
-                </a>
-
-            </li>
-
-
-
             <li class="menu-item <?= Request::segment(1) == 'kelola_pengguna' ? 'active' : '' ?>">
                 <a href="{{ route('kelola_pengguna') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user"></i>
                     <div data-i18n="Kelola Pengguna">Kelola Pengguna</div>
                 </a>
+            </li>
+
+            <li class="menu-item <?= Request::segment(1) == 'inventori' ? 'active' : '' ?>">
+                <a href="{{ route('inventori') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-basket"></i>
+                    <div data-i18n="Barang">Barang</div>
+                </a>
+
             </li>
         @elseif(Auth::user()->role == 'gudang')
             <li class="menu-item <?= Request::segment(1) == 'home' ? 'active' : '' ?>">
@@ -70,80 +68,7 @@
             <li class="menu-item <?= Request::segment(1) == 'inventori' ? 'active' : '' ?>">
                 <a href="{{ route('inventori') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-basket"></i>
-                    <div data-i18n="Bahan Baku">Bahan Baku</div>
-                </a>
-
-            </li>
-
-            <li class="menu-item <?= Request::segment(1) == 'toko' ? 'active' : '' ?>">
-                <a href="{{ route('toko') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-store-alt"></i>
-                    <div data-i18n="List Toko Pembelian">List Toko Pembelian</div>
-                </a>
-
-            </li>
-
-            <li class="menu-item <?= Request::segment(1) == 'menu' ? 'active' : '' ?>">
-                <a href="{{ route('menu') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-food-menu"></i>
-                    <div data-i18n="List Menu">List Menu</div>
-                </a>
-
-            </li>
-        @elseif(Auth::user()->role == 'manajer')
-            <li class="menu-item <?= Request::segment(1) == 'home' ? 'active' : '' ?>">
-                <a href="{{ route('home') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Beranda">Beranda</div>
-                </a>
-
-            </li>
-
-
-            <li class="menu-item <?= Request::segment(1) == 'inventori' ? 'active' : '' ?>">
-                <a href="{{ route('inventori') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-basket"></i>
-                    <div data-i18n="Bahan Baku">Bahan Baku</div>
-                </a>
-
-            </li>
-
-            <li class="menu-item <?= Request::segment(1) == 'toko' ? 'active' : '' ?>">
-                <a href="{{ route('toko') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-store-alt"></i>
-                    <div data-i18n="List Toko Pembelian">List Toko Pembelian</div>
-                </a>
-
-            </li>
-
-            <li class="menu-item <?= Request::segment(1) == 'menu' ? 'active' : '' ?>">
-                <a href="{{ route('menu') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-food-menu"></i>
-                    <div data-i18n="List Menu">List Menu</div>
-                </a>
-
-            </li>
-
-            <li class="menu-item <?= Request::segment(1) == 'kalkulator_menu' ? 'active' : '' ?>">
-                <a href="{{ route('kalkulator_menu') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-calculator"></i>
-                    <div data-i18n="Kalkulator Menu">Kalkulator Menu</div>
-                </a>
-
-            </li>
-        @elseif(Auth::user()->role == 'kasir')
-            <li class="menu-item <?= Request::segment(1) == 'home' ? 'active' : '' ?>">
-                <a href="{{ route('home') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Beranda">Beranda</div>
-                </a>
-
-            </li>
-
-            <li class="menu-item <?= Request::segment(1) == 'kalkulator_menu' ? 'active' : '' ?>">
-                <a href="{{ route('kalkulator_menu') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-calculator"></i>
-                    <div data-i18n="Kalkulator Menu">Kalkulator Menu</div>
+                    <div data-i18n="Barang">Barang</div>
                 </a>
 
             </li>

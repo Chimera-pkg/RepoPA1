@@ -34,6 +34,7 @@ return new class extends Migration
 
             $table->integer('harga')->default(0);
             $table->string('nota')->nullable();
+            $table->dateTime('tanggal_kelola')->nullable();
 
             $table->timestamps();
         });

@@ -58,25 +58,13 @@
                         <!-- Users List Table -->
                         <div class="card">
                             <div class="card-header border-bottom">
-                                <h5 class="card-title">Detail Bahan Baku</h5>
+                                <h5 class="card-title">Detail Kelola {{ $inventory->nama_bahan }}</h5>
+
+
 
                                 <div class="row">
 
 
-                                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
-                                        <div class="card">
-                                            <div class="card-body text-center">
-                                                <div class="avatar avatar-md mx-auto mb-3">
-                                                    <span class="avatar-initial rounded-circle bg-label-info">
-                                                        <img src="{{ asset('/') }}assets/img/bahan/{{ $inventory->gambar_bahan }}"
-                                                            alt="Card image cap" style="border-radius: 100%" /></span>
-                                                </div>
-                                                <span class="d-block mb-1 text-nowrap">Nama Bahan</span>
-                                                <h4 class="mb-0">{{ $inventory->nama_bahan }}</h4>
-
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
                                         <div class="card">
@@ -94,9 +82,6 @@
 
 
                                 </div>
-
-
-
 
                                 {{-- <h1>asdsad</h1> --}}
 
@@ -119,7 +104,7 @@
                                     </div>
                                 @endif --}}
 
-                                <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
+                                <div class="d-flex justify-content-between align-items-center row  gap-3 gap-md-0">
                                     <div class="col-md-4 user_role"></div>
 
                                 </div>
@@ -134,8 +119,8 @@
                                             <th>Gudang</th>
                                             <th>Keterangan</th>
                                             <th>Tanggal Kelola</th>
-                                            <th>Sisa Stok</th>
                                             <th>Harga</th>
+                                            <th>Action</th>
 
                                         </tr>
                                     </thead>
@@ -146,7 +131,7 @@
                                 </table>
                             </div>
 
-                            {{-- @include('offcanvas.edit_inventory') --}}
+                            @include('offcanvas.edit_kelola_stok')
                             @include('offcanvas.kelola_stok')
 
                         </div>
@@ -254,16 +239,15 @@
                                     name: 'keterangan',
                                 },
                                 {
-                                    data: 'created_at',
-                                    name: 'created_at',
-                                },
-                                {
-                                    data: 'stok_sekarang',
-                                    name: 'stok',
+                                    data: 'tanggal_kelola',
+                                    name: 'tanggal_kelola',
                                 },
                                 {
                                     data: 'harga',
                                     name: 'harga',
+                                },
+                                {
+                                    data: 'action',
                                 },
                             ],
                             columnDefs: [{
@@ -333,7 +317,7 @@
                                 {
                                     targets: 4,
                                     render: function(e, t, a, n) {
-                                        var s = a.created_at;
+                                        var s = a.tanggal_kelola;
                                         var date = new Date(s);
 
                                         // Format the date with the time and the month name
@@ -354,15 +338,6 @@
                                     targets: 5,
                                     responsivePriority: 4,
                                     render: function(e, t, a, n) {
-                                        var s = a.stok_sekarang + " " + a.satuan_bahan;
-                                        // o = a.satuan_bahan;
-                                        return (s.toString());
-                                    },
-                                },
-                                {
-                                    targets: 6,
-                                    responsivePriority: 4,
-                                    render: function(e, t, a, n) {
                                         var angka = a.harga
                                         // o = a.satuan_bahan;
                                         var reverse = angka.toString().split('').reverse().join(
@@ -374,6 +349,20 @@
                                         return ('Rp' + ribuan);
                                     },
                                 },
+                                {
+                                    targets: -1,
+                                    title: "Actions",
+                                    searchable: !1,
+                                    orderable: !1,
+                                    render: function(e, t, a, n) {
+                                        var s = "/inventori/delete_inventory_use/" + a.id;
+
+                                        return (
+                                            '<div class="d-inline-block text-nowrap"><a class="btn btn-sm btn-icon delete-record" href="' +
+                                            s + '"><i class="bx bx-trash"></i></a>'
+                                        );
+                                    },
+                                }
 
                             ],
                             order: [
@@ -676,38 +665,52 @@
                         }),
                         $(".datatables-users tbody").on("click", ".btn-edit", function(e) {
 
+                            $('#editKelolaStok')[0].reset();
+
+                            var stok_berubah = $(this).data('stok');
+                            var tanggal = $(this).data('tanggal');
+                            var status = $(this).data('status');
+                            var keterangan = $(this).data('keterangan');
+
+                            $(".offcanvas-body #stok").val(stok_berubah);
+                            $(".offcanvas-body #tanggal_kelola").val(tanggal);
+                            $(".offcanvas-body #status_edit").val(status);
+                            $(".offcanvas-body #keterangan").val(keterangan);
+
+                            if (status == 1) {
+
+                                var harga = $(this).data('harga');
+                                $(".offcanvas-body #harga").val(harga);
+
+                                $('#addFieldEdit').show();
+
+                                // Aktifkan validasi untuk field nama
+
+                            } else {
+                                $(".offcanvas-body #harga").val("");
+                                $(".offcanvas-body #nota").val("");
+                                $('#addFieldEdit').hide();
+
+                            }
 
 
-                            // $('#editUserForm')[0].reset();
-
-                            var gambar = $(this).data('gambar');
-                            var stok = $(this).data('stok');
-                            var nama = $(this).data('nama');
-                            var satuan = $(this).data('satuan');
-                            var id = $(this).data('id');
-                            // var username = $(this).data('username');
-                            // var role = $(this).data('role');
-                            // var avatar = $(this).data('avatar');
-                            // var id = $(this).data('id');
-                            // var password = $(this).data('password');
-
-                            // $(".offcanvas-body #id_user").val(id);
-                            // $(".offcanvas-body #avatar_old").val(avatar);
-                            // $(".offcanvas-body #password_old").val(password);
-                            $(".offcanvas-body #nama_barang").val(nama);
-                            $(".offcanvas-body #stok").val(stok);
-                            $(".offcanvas-body #satuan_bahan").val(satuan);
-                            $(".offcanvas-body #id").val(id);
-                            $(".offcanvas-body .img-preview-add").attr("src",
-                                "{{ asset('/') }}assets/img/bahan/" + gambar);
-                            // As pointed out in comments, 
-                            // it is unnecessary to have to manually call the modal.
-                            // $('#addBookDialog').modal('show');\
-
-                            // alert(gambar)
 
                         }),
-                        $(".datatables-users tbody").on("click", ".switch", function(e) {
+                        $('#status_edit').on('change', function() {
+                            var selectedValue = $(this).val();
+                            // alert(selectedValue)
+                            if (selectedValue == 1) {
+                                $('#addFieldEdit').show();
+                                // Aktifkan validasi untuk field nama
+
+                            } else {
+                                $(".offcanvas-body #harga").val("");
+                                $(".offcanvas-body #nota").val("");
+                                $('#addFieldEdit').hide();
+
+                            }
+                        });
+                    $(".datatables-users tbody").on("click", ".switch", function(e) {
 
                             e.preventDefault();
                             var id = $(this).find('.switch-input').data('id');
@@ -764,8 +767,101 @@
                 }),
                 (function() {
                     // c.preventDefault();
+
+                    // const field
+
+                    const existingValidations = {
+                        keterangan: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Masukkan keterangan"
+                                }
+                            }
+                        },
+                        status: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Masukkan status kegunaan stok barang"
+                                }
+                            }
+                        },
+                        tanggal_kelola: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Masukkan tanggal kelola stok barang"
+                                }
+                            }
+                        },
+                        stok: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Masukkan jumlah stok"
+                                },
+                                numeric: {
+                                    message: "Masukkan angka untuk jumlah stok"
+                                },
+                                between: {
+                                    min: 1,
+                                    max: 10000,
+                                    message: "Jumlah stok harus di antara 1 dan 10.000"
+                                }
+                            }
+                        }
+                    };
+
+
+                    $('#status').on('change', function() {
+                        var selectedValue = $(this).val();
+                        // alert(selectedValue)
+                        if (selectedValue == 1) {
+
+                            $('#addField').show();
+                            // Aktifkan validasi untuk field nama
+
+                        } else {
+                            $(".offcanvas-body #harga").val("");
+                            $(".offcanvas-body #nota").val("");
+
+
+
+                            $('#addField').hide();
+
+                        }
+                    });
+
                     var e = document.querySelectorAll(".phone-mask"),
                         t = document.getElementById("addNewUserForm");
+                    e &&
+                        e.forEach(function(e) {
+                            new Cleave(e, {
+                                phone: !0,
+                                phoneRegionCode: "US"
+                            });
+                        }),
+                        FormValidation.formValidation(t, {
+                            fields: existingValidations,
+                            plugins: {
+                                trigger: new FormValidation.plugins.Trigger(),
+                                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                                    eleValidClass: "",
+                                    rowSelector: function(e, t) {
+                                        return ".mb-3";
+                                    }
+                                }),
+                                submitButton: new FormValidation.plugins.SubmitButton(),
+                                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                                autoFocus: new FormValidation.plugins.AutoFocus()
+                            }
+                        });
+
+
+
+
+                })(),
+                (function() {
+                    // c.preventDefault();
+                    var e = document.querySelectorAll(".phone-mask"),
+                        t = document.getElementById("editKelolaStok");
                     e &&
                         e.forEach(function(e) {
                             new Cleave(e, {
@@ -782,10 +878,17 @@
                                         }
                                     }
                                 },
-                                status: {
+                                status_edit: {
                                     validators: {
                                         notEmpty: {
                                             message: "Masukkan status kegunaan stok barang"
+                                        }
+                                    }
+                                },
+                                tanggal_kelola: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: "Masukkan tanggal kelola stok barang"
                                         }
                                     }
                                 },
@@ -805,16 +908,7 @@
 
                                     }
                                 },
-                                // harga: {
-                                //     validators: {
-                                //         notEmpty: {
-                                //             message: "Masukkan total harga pembelian"
-                                //         },
-                                //         numeric: {
-                                //             message: "Masukkan angka untuk total harga pembelian"
-                                //         }
-                                //     }
-                                // },
+
                                 // nota: {
                                 //     validators: {
                                 //         notEmpty: {
@@ -852,55 +946,14 @@
                             // Aktifkan validasi untuk field nama
 
                         } else {
+                            $(".offcanvas-body #harga").val("");
+                            $(".offcanvas-body #nota").val("");
                             $('#addField').hide();
 
                         }
                     });
 
 
-                })(), (function() {
-                    // c.preventDefault();
-                    var e = document.querySelectorAll(".phone-mask"),
-                        t = document.getElementById("editUserForm");
-                    e &&
-                        e.forEach(function(e) {
-                            new Cleave(e, {
-                                phone: !0,
-                                phoneRegionCode: "US"
-                            });
-                        }),
-                        FormValidation.formValidation(t, {
-                            fields: {
-                                name: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Masukkan nama lengkap pengguna"
-                                        }
-                                    }
-                                },
-                                username: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Masukkan username pengguna"
-                                        }
-                                    }
-                                },
-
-
-                            },
-                            plugins: {
-                                trigger: new FormValidation.plugins.Trigger(),
-                                bootstrap5: new FormValidation.plugins.Bootstrap5({
-                                    eleValidClass: "",
-                                    rowSelector: function(e, t) {
-                                        return ".mb-3";
-                                    }
-                                }),
-                                submitButton: new FormValidation.plugins.SubmitButton(),
-                                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-                                autoFocus: new FormValidation.plugins.AutoFocus()
-                            }
-                        });
                 })();
 
         });
@@ -974,11 +1027,11 @@
         });
     </script>
 
-    @if ($errors->any())
+    @if ($errors->hasBag('errorEdit'))
         <script>
             $(document).ready(function() {
-                $('#offcanvasAddUser').offcanvas('show')
-                $('#addField').show()
+                $('#offcanvasEditUser').offcanvas('show')
+                $('#addFieldEdit').show()
             });
         </script>
     @endif
