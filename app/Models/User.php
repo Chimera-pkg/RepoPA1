@@ -28,4 +28,13 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
+    public function barang_masuk()
+    {
+        return $this->hasMany(Barang_Masuk::class);
+    }
+
+    public function barang_keluar()
+    {
+        return $this->hasMany(Barang_Keluar::class);
+    }
 }

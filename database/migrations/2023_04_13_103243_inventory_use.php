@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_use', function (Blueprint $table) {
+        Schema::create('barang_kelola', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('id_inventory')->nullable();
-            $table->foreign('id_inventory')->references('id')->on('inventories')->constrained()
+            $table->foreign('id_inventory')->references('id')->on('barangs')->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
@@ -32,6 +32,7 @@ return new class extends Migration
 
             $table->integer('stok_sekarang');
 
+            $table->string('pemasok')->nullable();
             $table->integer('harga')->default(0);
             $table->string('nota')->nullable();
             $table->dateTime('tanggal_kelola')->nullable();
@@ -47,6 +48,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_use');
+        Schema::dropIfExists('barang_kelola');
     }
 };

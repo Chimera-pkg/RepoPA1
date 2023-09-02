@@ -32,9 +32,9 @@
                             Masukkan username dan password pegawai yang sudah didaftarkan
                         </p>
 
-                        @if (session()->has('error'))
+                        @if (session()->has('loginError'))
                             <div class="alert alert-danger" role="alert">
-                                {{ session('error') }}
+                                {{ session('loginError') }}
                             </div>
                         @endif
 

@@ -58,7 +58,7 @@
                         <!-- Users List Table -->
                         <div class="card">
                             <div class="card-header border-bottom">
-                                <h5 class="card-title">Detail Kelola {{ $inventory->nama_bahan }}</h5>
+                                <h5 class="card-title">Detail Kelola {{ $inventory->nama_barang }}</h5>
 
 
 
@@ -75,7 +75,7 @@
                                                 </div>
                                                 <span class="d-block mb-1 text-nowrap">Stok Bahan</span>
                                                 <h4 class="mb-0">
-                                                    {{ $inventory->stok_bahan . ' ' . $inventory->satuan_bahan }}</h4>
+                                                    {{ $inventory->stok_barang . ' ' . $inventory->satuan_barang }}</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -114,12 +114,13 @@
                                     <thead>
                                         <tr>
 
-                                            <th>ID</th>
+                                            <th>ID Transaksi</th>
                                             <th>Stok</th>
                                             <th>Gudang</th>
                                             <th>Keterangan</th>
                                             <th>Tanggal Kelola</th>
                                             <th>Harga</th>
+                                            <th>Pemasok</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -247,6 +248,10 @@
                                     name: 'harga',
                                 },
                                 {
+                                    data: 'pemasok',
+                                    name: 'pemasok',
+                                },
+                                {
                                     data: 'action',
                                 },
                             ],
@@ -265,7 +270,7 @@
                                     responsivePriority: 4,
                                     render: function(e, t, a, n) {
                                         var s = a.id;
-                                        // o = a.satuan_bahan;
+                                        // o = a.satuan_barang;
                                         return (s.toString());
                                     },
                                 },
@@ -307,7 +312,7 @@
                                                 target + nota +
                                                 "' target='_blank' download>Lihat Nota</a>"
                                         }
-                                        // o = a.satuan_bahan;
+                                        // o = a.satuan_barang;
 
 
                                         return (result);
@@ -339,7 +344,7 @@
                                     responsivePriority: 4,
                                     render: function(e, t, a, n) {
                                         var angka = a.harga
-                                        // o = a.satuan_bahan;
+                                        // o = a.satuan_barang;
                                         var reverse = angka.toString().split('').reverse().join(
                                             '');
                                         var ribuan = reverse.match(/\d{1,3}/g);
@@ -682,12 +687,16 @@
                                 var harga = $(this).data('harga');
                                 $(".offcanvas-body #harga").val(harga);
 
+                                var pemasok = $(this).data('pemasok');
+                                $(".offcanvas-body #pemasok").val(pemasok);
+
                                 $('#addFieldEdit').show();
 
                                 // Aktifkan validasi untuk field nama
 
                             } else {
                                 $(".offcanvas-body #harga").val("");
+                                $(".offcanvas-body #pemsok").val("");
                                 $(".offcanvas-body #nota").val("");
                                 $('#addFieldEdit').hide();
 
@@ -704,6 +713,7 @@
                                 // Aktifkan validasi untuk field nama
 
                             } else {
+                                $(".offcanvas-body #pemasok").val("");
                                 $(".offcanvas-body #harga").val("");
                                 $(".offcanvas-body #nota").val("");
                                 $('#addFieldEdit').hide();
@@ -819,6 +829,7 @@
                             // Aktifkan validasi untuk field nama
 
                         } else {
+                            $(".offcanvas-body #pemasok").val("");
                             $(".offcanvas-body #harga").val("");
                             $(".offcanvas-body #nota").val("");
 
@@ -946,6 +957,7 @@
                             // Aktifkan validasi untuk field nama
 
                         } else {
+                            $(".offcanvas-body #pemasok").val("");
                             $(".offcanvas-body #harga").val("");
                             $(".offcanvas-body #nota").val("");
                             $('#addField').hide();

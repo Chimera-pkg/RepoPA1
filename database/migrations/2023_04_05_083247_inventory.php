@@ -13,13 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('barangs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_bahan');
-            $table->string('gambar_bahan')->default('default.jpg');
-            $table->integer('stok_bahan');
-            $table->string('satuan_bahan');
-            $table->integer('status_bahan')->default(1);
+            $table->string('nomor_notifikasi');
+            $table->string('nama_barang');
+            $table->string('gambar_barang')->default('default.jpg');
+            $table->integer('stok_barang');
+            $table->date('kadaluarsa_barang')->default(now());
+            $table->string('satuan_barang');
+            $table->integer('status_barang')->default(1);
+            $table->text('informasi_barang');
+            $table->unsignedBigInteger('id_supplier')->nullable();
+            $table->foreign('id_supplier')->references('id')->on('supplier')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('barangs');
     }
 };

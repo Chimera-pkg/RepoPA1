@@ -26,7 +26,7 @@ class ProfileController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Profil Pengguna - Aplikasi Pengelolaan RM Alam Mutiara',
+            'title' => 'Profil Pengguna - Aplikasi Pengelolaan Stok Annisa Kosmetik',
         ];
 
         return view('detail_profile', $data);
@@ -152,7 +152,7 @@ class ProfileController extends Controller
     public function update_password()
     {
         $data = [
-            'title' => 'Profil Pengguna - Aplikasi Pengelolaan RM Alam Mutiara',
+            'title' => 'Profil Pengguna - Aplikasi Pengelolaan Stok Annisa Kosmetik',
         ];
 
         return view('profile_security', $data);

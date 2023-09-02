@@ -45,6 +45,7 @@
                     <option value="gudang">Gudang</option>
                     <option value="manajer">Manajer</option>
                     <option value="kasir">Kasir</option>
+                    <option value="sales">Sales</option>
                 </select>
             </div>
 

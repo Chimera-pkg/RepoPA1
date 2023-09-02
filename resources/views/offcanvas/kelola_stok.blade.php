@@ -18,7 +18,7 @@
 
 
             <div class="mb-3">
-                <label class="form-label" for="stok">Jumlah Stok</label>
+                <label class="form-label" for="stok">Jumlah Stok ({{ $inventory->satuan_barang }})</label>
                 <input type="number" class="form-control" id="stok" placeholder="12" name="stok"
                     value="{{ old('stok') }}" />
             </div>
@@ -33,8 +33,8 @@
                 <label class="form-label" for="status">Pilih Kegiatan</label>
                 <select id="status" class="form-select" name="status">
                     <option value="" {{ old('status') == '' ? 'selected' : '' }} disabled>---- Pilih ----</option>
-                    <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Tambah Stok</option>
-                    <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Gunakan Stok</option>
+                    <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Barang Masuk</option>
+                    <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Barang Keluar</option>
                 </select>
             </div>
 
@@ -47,6 +47,15 @@
 
 
             <div id="addField" style="display: none">
+                <div class="mb-3" id="pemasok_inp">
+                    <label class="form-label" for="pemasok">Pemasok</label>
+                    <input type="text" class="form-control" id="pemasok" name="pemasok"
+                        value="{{ old('pemasok') }}" placeholder="PT. Satu bagi dua" />
+
+                    @error('pemasok')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
                 <div class="mb-3" id="harga_inp">
                     <label class="form-label" for="harga">Harga</label>
                     <input type="number" class="form-control" id="harga" name="harga"

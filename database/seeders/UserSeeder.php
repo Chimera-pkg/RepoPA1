@@ -19,27 +19,44 @@ class UserSeeder extends Seeder
             [
 
                 [
-                    'name' => 'Gudang 1',
+                    'name' => 'Fitri',
                     'username' => 'gudang_1',
                     'password' => Hash::make('asdasdasd'),
                     'role' => 'gudang',
 
                 ],
                 [
-                    'name' => 'Gudang 2',
+                    'name' => 'Anto',
                     'username' => 'gudang_2',
                     'password' => Hash::make('asdasdasd'),
                     'role' => 'gudang',
 
                 ],
                 [
-                    'name' => 'Admin 1',
+                    'name' => 'Laras',
                     'username' => 'admin_1',
                     'password' => Hash::make('asdasdasd'),
                     'role' => 'admin',
 
                 ],
-
+                [
+                    'name' => 'Putri',
+                    'username' => 'sales_1',
+                    'password' => Hash::make('asdasdasd'),
+                    'role' => 'sales',
+                ],
+                [
+                    'name' => 'Sales 2',
+                    'username' => 'sales_2',
+                    'password' => Hash::make('asdasdasd'),
+                    'role' => 'sales',
+                ],
+                [
+                    'name' => 'Haja',
+                    'username' => 'manager_1',
+                    'password' => Hash::make('asdasdasd'),
+                    'role' => 'manager',
+                ],
             ]
         );
     }

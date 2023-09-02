@@ -8,10 +8,11 @@
                      new Date().getFullYear()
                  );
              </script>
-             <span class="fw-semibold">RM Alam Mutiara</span>, made with ❤️ by
-             <a href="#" target="_blank" class="footer-link fw-semibold">ABIZARD</a>
+             <span class="fw-semibold">Stok Anisa Kosmetik</span>, made with ❤️ by
+             <a href="#" target="_blank" class="footer-link fw-semibold">ROSA</a>
          </div>
 
      </div>
  </footer>
+ 
  <!-- / Footer -->
